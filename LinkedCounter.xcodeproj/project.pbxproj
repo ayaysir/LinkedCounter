@@ -22,6 +22,8 @@
 		44F304E728DDCFB50068E50B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E628DDCFB50068E50B /* NotificationController.swift */; };
 		44F304E928DDCFB50068E50B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E828DDCFB50068E50B /* ComplicationController.swift */; };
 		44F304EB28DDCFB60068E50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F304EA28DDCFB60068E50B /* Assets.xcassets */; };
+		44F3053528DDE2B50068E50B /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053428DDE2B50068E50B /* SessionHandler.swift */; };
+		44F3053A28DDEC070068E50B /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		44F304EA28DDCFB60068E50B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44F304EC28DDCFB60068E50B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F304ED28DDCFB60068E50B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		44F3053428DDE2B50068E50B /* SessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
+		44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		44F304B228DDCFAF0068E50B = {
 			isa = PBXGroup;
 			children = (
+				44F3053628DDEBA80068E50B /* Common */,
 				44F304BD28DDCFAF0068E50B /* LinkedCounter */,
 				44F304D328DDCFB40068E50B /* LinkedCounter WatchKit App */,
 				44F304E128DDCFB50068E50B /* LinkedCounter WatchKit Extension */,
@@ -136,6 +141,7 @@
 				44F304C728DDCFB40068E50B /* Assets.xcassets */,
 				44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */,
 				44F304CC28DDCFB40068E50B /* Info.plist */,
+				44F3053428DDE2B50068E50B /* SessionHandler.swift */,
 			);
 			path = LinkedCounter;
 			sourceTree = "<group>";
@@ -161,6 +167,14 @@
 				44F304ED28DDCFB60068E50B /* PushNotificationPayload.apns */,
 			);
 			path = "LinkedCounter WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		44F3053628DDEBA80068E50B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */,
+				44F3053528DDE2B50068E50B /* SessionHandler.swift in Sources */,
 				44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */,
 				44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */,
 			);
@@ -309,6 +324,7 @@
 				44F304E928DDCFB50068E50B /* ComplicationController.swift in Sources */,
 				44F304E528DDCFB50068E50B /* ExtensionDelegate.swift in Sources */,
 				44F304E328DDCFB50068E50B /* InterfaceController.swift in Sources */,
+				44F3053A28DDEC070068E50B /* WatchSessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
