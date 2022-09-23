@@ -1,0 +1,686 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304BE28DDCFAF0068E50B /* AppDelegate.swift */; };
+		44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304C028DDCFAF0068E50B /* SceneDelegate.swift */; };
+		44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304C228DDCFAF0068E50B /* ViewController.swift */; };
+		44F304C628DDCFAF0068E50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F304C428DDCFAF0068E50B /* Main.storyboard */; };
+		44F304C828DDCFB40068E50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F304C728DDCFB40068E50B /* Assets.xcassets */; };
+		44F304CB28DDCFB40068E50B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */; };
+		44F304D028DDCFB40068E50B /* LinkedCounter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 44F304CF28DDCFB40068E50B /* LinkedCounter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		44F304D628DDCFB40068E50B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F304D428DDCFB40068E50B /* Interface.storyboard */; };
+		44F304D828DDCFB50068E50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F304D728DDCFB50068E50B /* Assets.xcassets */; };
+		44F304DE28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 44F304DD28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		44F304E328DDCFB50068E50B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E228DDCFB50068E50B /* InterfaceController.swift */; };
+		44F304E528DDCFB50068E50B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E428DDCFB50068E50B /* ExtensionDelegate.swift */; };
+		44F304E728DDCFB50068E50B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E628DDCFB50068E50B /* NotificationController.swift */; };
+		44F304E928DDCFB50068E50B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304E828DDCFB50068E50B /* ComplicationController.swift */; };
+		44F304EB28DDCFB60068E50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F304EA28DDCFB60068E50B /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		44F304D128DDCFB40068E50B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44F304B328DDCFAF0068E50B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44F304CE28DDCFB40068E50B;
+			remoteInfo = "LinkedCounter WatchKit App";
+		};
+		44F304DF28DDCFB50068E50B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44F304B328DDCFAF0068E50B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44F304DC28DDCFB50068E50B;
+			remoteInfo = "LinkedCounter WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44F304F328DDCFB60068E50B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				44F304DE28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F304F728DDCFB60068E50B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				44F304D028DDCFB40068E50B /* LinkedCounter WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		44F304BB28DDCFAF0068E50B /* LinkedCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F304BE28DDCFAF0068E50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		44F304C028DDCFAF0068E50B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		44F304C228DDCFAF0068E50B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		44F304C528DDCFAF0068E50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		44F304C728DDCFB40068E50B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44F304CA28DDCFB40068E50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44F304CC28DDCFB40068E50B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F304CF28DDCFB40068E50B /* LinkedCounter WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LinkedCounter WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F304D528DDCFB40068E50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		44F304D728DDCFB50068E50B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44F304DD28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LinkedCounter WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F304E228DDCFB50068E50B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		44F304E428DDCFB50068E50B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		44F304E628DDCFB50068E50B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		44F304E828DDCFB50068E50B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		44F304EA28DDCFB60068E50B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44F304EC28DDCFB60068E50B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F304ED28DDCFB60068E50B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		44F304B828DDCFAF0068E50B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F304DA28DDCFB50068E50B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		44F304B228DDCFAF0068E50B = {
+			isa = PBXGroup;
+			children = (
+				44F304BD28DDCFAF0068E50B /* LinkedCounter */,
+				44F304D328DDCFB40068E50B /* LinkedCounter WatchKit App */,
+				44F304E128DDCFB50068E50B /* LinkedCounter WatchKit Extension */,
+				44F304BC28DDCFAF0068E50B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		44F304BC28DDCFAF0068E50B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44F304BB28DDCFAF0068E50B /* LinkedCounter.app */,
+				44F304CF28DDCFB40068E50B /* LinkedCounter WatchKit App.app */,
+				44F304DD28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		44F304BD28DDCFAF0068E50B /* LinkedCounter */ = {
+			isa = PBXGroup;
+			children = (
+				44F304BE28DDCFAF0068E50B /* AppDelegate.swift */,
+				44F304C028DDCFAF0068E50B /* SceneDelegate.swift */,
+				44F304C228DDCFAF0068E50B /* ViewController.swift */,
+				44F304C428DDCFAF0068E50B /* Main.storyboard */,
+				44F304C728DDCFB40068E50B /* Assets.xcassets */,
+				44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */,
+				44F304CC28DDCFB40068E50B /* Info.plist */,
+			);
+			path = LinkedCounter;
+			sourceTree = "<group>";
+		};
+		44F304D328DDCFB40068E50B /* LinkedCounter WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				44F304D428DDCFB40068E50B /* Interface.storyboard */,
+				44F304D728DDCFB50068E50B /* Assets.xcassets */,
+			);
+			path = "LinkedCounter WatchKit App";
+			sourceTree = "<group>";
+		};
+		44F304E128DDCFB50068E50B /* LinkedCounter WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				44F304E228DDCFB50068E50B /* InterfaceController.swift */,
+				44F304E428DDCFB50068E50B /* ExtensionDelegate.swift */,
+				44F304E628DDCFB50068E50B /* NotificationController.swift */,
+				44F304E828DDCFB50068E50B /* ComplicationController.swift */,
+				44F304EA28DDCFB60068E50B /* Assets.xcassets */,
+				44F304EC28DDCFB60068E50B /* Info.plist */,
+				44F304ED28DDCFB60068E50B /* PushNotificationPayload.apns */,
+			);
+			path = "LinkedCounter WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		44F304BA28DDCFAF0068E50B /* LinkedCounter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F304F828DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter" */;
+			buildPhases = (
+				44F304B728DDCFAF0068E50B /* Sources */,
+				44F304B828DDCFAF0068E50B /* Frameworks */,
+				44F304B928DDCFAF0068E50B /* Resources */,
+				44F304F728DDCFB60068E50B /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44F304D228DDCFB40068E50B /* PBXTargetDependency */,
+			);
+			name = LinkedCounter;
+			productName = LinkedCounter;
+			productReference = 44F304BB28DDCFAF0068E50B /* LinkedCounter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		44F304CE28DDCFB40068E50B /* LinkedCounter WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F304F428DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter WatchKit App" */;
+			buildPhases = (
+				44F304CD28DDCFB40068E50B /* Resources */,
+				44F304F328DDCFB60068E50B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44F304E028DDCFB50068E50B /* PBXTargetDependency */,
+			);
+			name = "LinkedCounter WatchKit App";
+			productName = "LinkedCounter WatchKit App";
+			productReference = 44F304CF28DDCFB40068E50B /* LinkedCounter WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		44F304DC28DDCFB50068E50B /* LinkedCounter WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F304F028DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter WatchKit Extension" */;
+			buildPhases = (
+				44F304D928DDCFB50068E50B /* Sources */,
+				44F304DA28DDCFB50068E50B /* Frameworks */,
+				44F304DB28DDCFB50068E50B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LinkedCounter WatchKit Extension";
+			productName = "LinkedCounter WatchKit Extension";
+			productReference = 44F304DD28DDCFB50068E50B /* LinkedCounter WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		44F304B328DDCFAF0068E50B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					44F304BA28DDCFAF0068E50B = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					44F304CE28DDCFB40068E50B = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					44F304DC28DDCFB50068E50B = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 44F304B628DDCFAF0068E50B /* Build configuration list for PBXProject "LinkedCounter" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 44F304B228DDCFAF0068E50B;
+			productRefGroup = 44F304BC28DDCFAF0068E50B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				44F304BA28DDCFAF0068E50B /* LinkedCounter */,
+				44F304CE28DDCFB40068E50B /* LinkedCounter WatchKit App */,
+				44F304DC28DDCFB50068E50B /* LinkedCounter WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		44F304B928DDCFAF0068E50B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F304CB28DDCFB40068E50B /* LaunchScreen.storyboard in Resources */,
+				44F304C828DDCFB40068E50B /* Assets.xcassets in Resources */,
+				44F304C628DDCFAF0068E50B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F304CD28DDCFB40068E50B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F304D828DDCFB50068E50B /* Assets.xcassets in Resources */,
+				44F304D628DDCFB40068E50B /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F304DB28DDCFB50068E50B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F304EB28DDCFB60068E50B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		44F304B728DDCFAF0068E50B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */,
+				44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */,
+				44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F304D928DDCFB50068E50B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F304E728DDCFB50068E50B /* NotificationController.swift in Sources */,
+				44F304E928DDCFB50068E50B /* ComplicationController.swift in Sources */,
+				44F304E528DDCFB50068E50B /* ExtensionDelegate.swift in Sources */,
+				44F304E328DDCFB50068E50B /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44F304D228DDCFB40068E50B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44F304CE28DDCFB40068E50B /* LinkedCounter WatchKit App */;
+			targetProxy = 44F304D128DDCFB40068E50B /* PBXContainerItemProxy */;
+		};
+		44F304E028DDCFB50068E50B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44F304DC28DDCFB50068E50B /* LinkedCounter WatchKit Extension */;
+			targetProxy = 44F304DF28DDCFB50068E50B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		44F304C428DDCFAF0068E50B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44F304C528DDCFAF0068E50B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44F304CA28DDCFB40068E50B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		44F304D428DDCFB40068E50B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44F304D528DDCFB40068E50B /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		44F304EE28DDCFB60068E50B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		44F304EF28DDCFB60068E50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		44F304F128DDCFB60068E50B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LinkedCounter WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LinkedCounter WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKExtensionDelegateClassName = "$(PRODUCT_MODULE_NAME).ExtensionDelegate";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		44F304F228DDCFB60068E50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LinkedCounter WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LinkedCounter WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKExtensionDelegateClassName = "$(PRODUCT_MODULE_NAME).ExtensionDelegate";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		44F304F528DDCFB60068E50B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = LinkedCounter_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "LinkedCounter WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.bgsmm.LinkedCounter;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		44F304F628DDCFB60068E50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = LinkedCounter_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "LinkedCounter WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.bgsmm.LinkedCounter;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		44F304F928DDCFB60068E50B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LinkedCounter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		44F304FA28DDCFB60068E50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6S2SA26VAN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LinkedCounter/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bgsmm.LinkedCounter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		44F304B628DDCFAF0068E50B /* Build configuration list for PBXProject "LinkedCounter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F304EE28DDCFB60068E50B /* Debug */,
+				44F304EF28DDCFB60068E50B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F304F028DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F304F128DDCFB60068E50B /* Debug */,
+				44F304F228DDCFB60068E50B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F304F428DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F304F528DDCFB60068E50B /* Debug */,
+				44F304F628DDCFB60068E50B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F304F828DDCFB60068E50B /* Build configuration list for PBXNativeTarget "LinkedCounter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F304F928DDCFB60068E50B /* Debug */,
+				44F304FA28DDCFB60068E50B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 44F304B328DDCFAF0068E50B /* Project object */;
+}
