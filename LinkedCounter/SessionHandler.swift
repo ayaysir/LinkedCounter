@@ -70,22 +70,26 @@ class SessionHandler : NSObject, WCSessionDelegate {
         }
         
         switch request {
-        case "request":
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
-        case "totalCount":
-            let totalCount = localStorage.double(forKey: .cfgTotalCount)
-            replyHandler(["totalCount": totalCount])
-        case "writeData":
-            let oldNum = localStorage.integer(forKey: "WriteDataFromWatch")
-            localStorage.set(oldNum + 1, forKey: "WriteDataFromWatch")
-            let newNum = localStorage.integer(forKey: "WriteDataFromWatch")
-            replyHandler(["newNum": newNum])
+        case "plusCount_get":
+            replyHandler(makeResponse(localStorage.double(forKey: .cfgPlusCount)))
+        case "totalCount_get":
+            replyHandler(makeResponse(localStorage.double(forKey: .cfgTotalCount)))
+        case "totalCount_plus":
+            let oldValue = localStorage.double(forKey: .cfgTotalCount)
+            let plusCount = localStorage.double(forKey: .cfgPlusCount)
+            let newValue = oldValue + (plusCount > 0 ? plusCount : 5.0)
+            localStorage.set(newValue, forKey: .cfgTotalCount)
+            replyHandler(makeResponse(newValue))
+            NotificationCenter.default.post(name: .refreshView, object: nil)
+        case "totalCount_minus":
+            let oldValue = localStorage.double(forKey: .cfgTotalCount)
+            let plusCount = localStorage.double(forKey: .cfgPlusCount)
+            let newValue = oldValue - (plusCount > 0 ? plusCount : 5.0)
+            localStorage.set(newValue, forKey: .cfgTotalCount)
+            replyHandler(makeResponse(newValue))
+            NotificationCenter.default.post(name: .refreshView, object: nil)
         default:
             break
         }
-        if message["request"] as? String == "version" {
-            
-        }
     }
-    
 }

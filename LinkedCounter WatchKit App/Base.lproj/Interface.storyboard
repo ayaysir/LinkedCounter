@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="20037" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38"/>
+    <device id="watch44"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="20006"/>
@@ -11,33 +11,36 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="LinkedCounter_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <table alignment="left" id="DT1-9s-wKT">
-                            <items>
-                                <tableRow identifier="Row" id="Yw2-b4-3h3" customClass="Row" customModule="LinkedCounter_WatchKit_App" customModuleProvider="target">
-                                    <group key="rootItem" width="1" alignment="left" id="GdO-PV-CU1">
-                                        <items>
-                                            <label width="136" height="41" alignment="left" text="Label" numberOfLines="0" id="1Oe-qS-ZoG"/>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <outlet property="label" destination="1Oe-qS-ZoG" id="sUa-wN-ntv"/>
-                                    </connections>
-                                </tableRow>
-                            </items>
-                        </table>
-                        <button width="1" alignment="left" title="Button" id="bT7-T0-MJa">
+                        <label width="1" height="82" alignment="center" text="120" textAlignment="center" id="T6g-jc-Hug">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
+                        </label>
+                        <button width="1" height="30" alignment="left" title="-" id="npT-MQ-LVt">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="30"/>
                             <connections>
-                                <action selector="sendMessage" destination="AgC-eL-Hgc" id="gBL-Iu-qgT"/>
+                                <action selector="btnActMinus" destination="AgC-eL-Hgc" id="wAa-gX-kdT"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="right" title="+" id="3Vu-5P-9sy">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="30"/>
+                            <connections>
+                                <action selector="btnActPlus" destination="AgC-eL-Hgc" id="gKc-d3-mhw"/>
+                            </connections>
+                        </button>
+                        <separator alignment="left" id="FzL-e8-OAI"/>
+                        <label width="1" alignment="left" text="Step Value: 5" textAlignment="center" id="kaT-w5-6ih"/>
                     </items>
                     <connections>
-                        <outlet property="button" destination="bT7-T0-MJa" id="rVq-df-LgB"/>
-                        <outlet property="table" destination="DT1-9s-wKT" id="aJV-k4-a7t"/>
+                        <outlet property="btnMinus" destination="npT-MQ-LVt" id="Wwe-j7-ivA"/>
+                        <outlet property="btnPlus" destination="3Vu-5P-9sy" id="4aN-wh-MSb"/>
+                        <outlet property="lblStatus" destination="kaT-w5-6ih" id="5sm-gE-w8o"/>
+                        <outlet property="lblTotalCount" destination="T6g-jc-Hug" id="E77-eD-hbP"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="219.52173913043478" y="344.55357142857144"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

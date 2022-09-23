@@ -24,6 +24,12 @@
 		44F304EB28DDCFB60068E50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F304EA28DDCFB60068E50B /* Assets.xcassets */; };
 		44F3053528DDE2B50068E50B /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053428DDE2B50068E50B /* SessionHandler.swift */; };
 		44F3053A28DDEC070068E50B /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */; };
+		44F3053F28DDFE070068E50B /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053E28DDFE070068E50B /* Double+.swift */; };
+		44F3054028DDFE070068E50B /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3053E28DDFE070068E50B /* Double+.swift */; };
+		44F3054228DDFE830068E50B /* RequestAndResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054128DDFE830068E50B /* RequestAndResponse.swift */; };
+		44F3054328DDFE830068E50B /* RequestAndResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054128DDFE830068E50B /* RequestAndResponse.swift */; };
+		44F3054528DE0BEF0068E50B /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054428DE0BEF0068E50B /* NotificationName.swift */; };
+		44F3054628DE0BEF0068E50B /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054428DE0BEF0068E50B /* NotificationName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +96,9 @@
 		44F304ED28DDCFB60068E50B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		44F3053428DDE2B50068E50B /* SessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
 		44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		44F3053E28DDFE070068E50B /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		44F3054128DDFE830068E50B /* RequestAndResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAndResponse.swift; sourceTree = "<group>"; };
+		44F3054428DE0BEF0068E50B /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +151,7 @@
 				44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */,
 				44F304CC28DDCFB40068E50B /* Info.plist */,
 				44F3053428DDE2B50068E50B /* SessionHandler.swift */,
+				44F3054428DE0BEF0068E50B /* NotificationName.swift */,
 			);
 			path = LinkedCounter;
 			sourceTree = "<group>";
@@ -173,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				44F3053728DDEBCD0068E50B /* WatchSessionManager.swift */,
+				44F3053E28DDFE070068E50B /* Double+.swift */,
+				44F3054128DDFE830068E50B /* RequestAndResponse.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -311,8 +323,11 @@
 			files = (
 				44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */,
 				44F3053528DDE2B50068E50B /* SessionHandler.swift in Sources */,
+				44F3054228DDFE830068E50B /* RequestAndResponse.swift in Sources */,
+				44F3054528DE0BEF0068E50B /* NotificationName.swift in Sources */,
 				44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */,
 				44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */,
+				44F3053F28DDFE070068E50B /* Double+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,9 +336,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F304E728DDCFB50068E50B /* NotificationController.swift in Sources */,
+				44F3054628DE0BEF0068E50B /* NotificationName.swift in Sources */,
 				44F304E928DDCFB50068E50B /* ComplicationController.swift in Sources */,
 				44F304E528DDCFB50068E50B /* ExtensionDelegate.swift in Sources */,
 				44F304E328DDCFB50068E50B /* InterfaceController.swift in Sources */,
+				44F3054028DDFE070068E50B /* Double+.swift in Sources */,
+				44F3054328DDFE830068E50B /* RequestAndResponse.swift in Sources */,
 				44F3053A28DDEC070068E50B /* WatchSessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

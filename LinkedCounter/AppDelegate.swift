@@ -20,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("WCSession not supported (f.e. on iPad).")
         }
         
+        checkAppFirstrunOrUpdateStatus {
+            localStorage.set(0.0, forKey: .cfgTotalCount)
+            localStorage.set(30.0, forKey: .cfgPlusCount)
+        } updated: {
+            
+        } nothingChanged: {
+            
+        }
+
+        
         return true
     }
 
@@ -39,4 +49,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+func checkAppFirstrunOrUpdateStatus(firstrun: () -> (), updated: () -> (), nothingChanged: () -> ()) {
+    let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    let versionOfLastRun = UserDefaults.standard.object(forKey: "VersionOfLastRun") as? String
+    // print(#function, currentVersion ?? "", versionOfLastRun ?? "")
+
+    if versionOfLastRun == nil {
+        // First start after installing the app
+        firstrun()
+
+    } else if versionOfLastRun != currentVersion {
+        // App was updated since last run
+        updated()
+
+    } else {
+        // nothing changed
+        nothingChanged()
+    }
+
+    UserDefaults.standard.set(currentVersion, forKey: "VersionOfLastRun")
+    UserDefaults.standard.synchronize()
+}
+
 

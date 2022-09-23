@@ -7,16 +7,6 @@
 
 import UIKit
 
-extension Double {
-    var int: Int {
-        return Int(self)
-    }
-    
-    var intText: String {
-        return "\(self.int)"
-    }
-}
-
 let localStorage = UserDefaults.standard
 
 extension String {
@@ -45,18 +35,30 @@ class ViewController: UIViewController {
         // stepperTotalCount.stepValue = stepperPlusCount.value
         
         // 초기화
-        let plusCount = localStorage.double(forKey: .cfgPlusCount)
-        stepperTotalCount.value = localStorage.double(forKey: .cfgTotalCount)
-        stepperTotalCount.stepValue = plusCount > 0.0 ? plusCount : 5.0
-        stepperPlusCount.value = stepperTotalCount.stepValue
+        refreshView()
         
-        lblTotalCount.text = stepperTotalCount.value.intText
-        lblPlusCount.text = stepperTotalCount.stepValue.intText
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: .refreshView, object: nil)
+    }
+    
+    @objc func refreshView() {
+        DispatchQueue.main.async { [unowned self] in
+            let plusCount = localStorage.double(forKey: .cfgPlusCount)
+            stepperTotalCount.value = localStorage.double(forKey: .cfgTotalCount)
+            stepperTotalCount.stepValue = plusCount > 0.0 ? plusCount : 30.0
+            stepperPlusCount.value = stepperTotalCount.stepValue
+            
+            lblTotalCount.text = stepperTotalCount.value.intText
+            lblPlusCount.text = stepperTotalCount.stepValue.intText
+        }
     }
     
     func saveData() {
         localStorage.set(stepperTotalCount.value,forKey: .cfgTotalCount)
         localStorage.set(stepperPlusCount.value,forKey: .cfgPlusCount)
+        
+        connectivityHandler.session.sendMessage(makeRequestForSendToWatch(totalCount: stepperTotalCount.value, plusCount: stepperPlusCount.value), replyHandler: nil) { error in
+            print("Error sending message: \(error)")
+        }
     }
 
     @IBAction func stepperActTotalCount(_ sender: UIStepper) {
@@ -70,13 +72,13 @@ class ViewController: UIViewController {
         saveData()
     }
     
-    @IBAction func sendMessage(_ sender: Any) {
-        messagesCounter += 1
-        // 3: Send message to apple watch, we don't wait to response, only trace errors
-        connectivityHandler.session.sendMessage(["msg" : "Message \(messagesCounter)"], replyHandler: nil) { error in
-            print("Error sending message: \(error)")
-        }
-    }
+    // @IBAction func sendMessage(_ sender: Any) {
+    //     messagesCounter += 1
+    //     // 3: Send message to apple watch, we don't wait to response, only trace errors
+    //     connectivityHandler.session.sendMessage(["msg" : "Message \(messagesCounter)"], replyHandler: nil) { error in
+    //         print("Error sending message: \(error)")
+    //     }
+    // }
     
 }
 

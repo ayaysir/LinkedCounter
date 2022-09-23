@@ -13,16 +13,26 @@ import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
     
-    @IBOutlet weak var table: WKInterfaceTable!
-    @IBOutlet weak var button: WKInterfaceButton!
+    enum LabelStatus {
+        case stepValue, normal, error
+    }
+    
+    @IBOutlet weak var lblTotalCount: WKInterfaceLabel!
+    @IBOutlet weak var lblStatus: WKInterfaceLabel!
+    @IBOutlet weak var btnMinus: WKInterfaceButton!
+    @IBOutlet weak var btnPlus: WKInterfaceButton!
     
     // 1: Session property
     private var session = WCSession.default
     
+    private var totalCount: Double!
+    private var plusCount: Double!
+    
+    private var initTotalCountLoaded = false
+    private var initPlusCountLoaded = false
+    
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
-        items.append("We are ready!!")
-        
     }
     
     override func willActivate() {
@@ -34,15 +44,51 @@ class InterfaceController: WKInterfaceController {
             session.activate()
         }
         
-        print(session.isReachable)
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] timer in
             print("timer", self.session.isReachable)
             if session.isReachable {
-                session.sendMessage(["request": "totalCount"]) { response in
-                    print(#function, response)
+                
+                turnAllButton(false)
+                
+                lblTotalCount.setText("...")
+                setStatus(.normal, "Loading status...")
+                
+                session.sendMessage(makeRequest("plusCount_get")) { response in
+                    
+                    if let plusCount = response["response"] as? Double {
+                        self.plusCount = plusCount
+                        self.setStatus(.stepValue, plusCount.intText)
+                        self.initPlusCountLoaded = true
+                        if self.initTotalCountLoaded {
+                            self.turnAllButton(true)
+                        }
+                    } else {
+                        self.setStatus(.error, "Unknown")
+                    }
                 } errorHandler: { error in
                     print("Error sending message: %@", error)
+                    self.setStatus(.error, error.localizedDescription)
                 }
+                
+                session.sendMessage(makeRequest("totalCount_get")) { response in
+                    
+                    if let totalCount = response["response"] as? Double {
+                        self.totalCount = totalCount
+                        self.lblTotalCount.setText(totalCount.intText)
+                        self.initTotalCountLoaded = true
+                        if self.initPlusCountLoaded {
+                            self.turnAllButton(true)
+                        }
+                    } else {
+                        self.lblTotalCount.setText("ERROR")
+                        self.lblTotalCount.setTextColor(.red)
+                    }
+                } errorHandler: { error in
+                    print("Error sending message: %@", error)
+                    self.lblTotalCount.setText("ERROR")
+                    self.lblTotalCount.setTextColor(.red)
+                }
+
                 timer.invalidate()
             } else {
                 print(#function, "iPhone is not reachable!!")
@@ -54,44 +100,115 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
     }
     
-    // 3. With our session property which allows implement a method for start communication
-    // and manage the counterpart response
-    @IBAction func sendMessage() {
+    private func turnAllButton(_ isEnable: Bool) {
+        btnPlus.setEnabled(isEnable)
+        btnMinus.setEnabled(isEnable)
+    }
+    
+    private func setStatus(_ status: LabelStatus, _ text: String) {
+        switch status {
+        case .stepValue:
+            lblStatus.setTextColor(.white)
+            lblStatus.setText("Step Value: \(text)")
+        case .normal:
+            lblStatus.setTextColor(.white)
+            lblStatus.setText(text)
+        case .error:
+            lblStatus.setTextColor(.red)
+            lblStatus.setText("Error: \(text)")
+        }
+    }
+    
+    private func requestChangeTotalCount(_ request: String, failedHandler: @escaping () -> ()) {
         if session.isReachable {
-            button.setEnabled(false)
-            button.setTitle("receiving...")
-            session.sendMessage(["request": "writeData"]) { response in
-                self.items.append("Reply: \(response)")
-                self.button.setEnabled(true)
-                self.button.setTitle("button")
+            session.sendMessage(makeRequest("totalCount_\(request)")) { response in
+                
+                if let totalCount = response["response"] as? Double {
+                    self.totalCount = totalCount
+                    self.lblTotalCount.setText(totalCount.intText)
+                    print("Request success:", totalCount)
+                } else {
+                    print("Request failed:", #line)
+                    failedHandler()
+                }
             } errorHandler: { error in
                 print("Error sending message: %@", error)
+                failedHandler()
             }
         } else {
-            print("iPhone is not reachable!!")
+            print("Request failed:", #line)
+            failedHandler()
         }
     }
     
-    // MARK: - Items Table
-    
-    private var items = [String]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateTable()
-            }
+    @IBAction func btnActMinus() {
+        print(#function)
+        // 시계 디스플레이는 plusCount 만큼 일단 올리고
+        // 맞으면 확정 표시
+        // 틀리면 롤백
+        guard let plusCount = plusCount else { return }
+        totalCount = totalCount - plusCount
+        lblTotalCount.setText(totalCount.intText)
+        
+        requestChangeTotalCount("minus") { [self] in
+            totalCount = totalCount + plusCount
+            lblTotalCount.setText(totalCount.intText)
         }
     }
     
-    
-    /// Updating all contents of WKInterfaceTable
-    func updateTable() {
-        table.setNumberOfRows(items.count, withRowType: "Row")
-        for (i, item) in items.enumerated() {
-            if let row = table.rowController(at: i) as? Row {
-                row.label.setText(item)
-            }
+    @IBAction func btnActPlus() {
+        print(#function)
+        // 시계 디스플레이는 plusCount 만큼 일단 올리고
+        // 맞으면 확정 표시
+        // 틀리면 롤백
+        guard let plusCount = plusCount else { return }
+        totalCount = totalCount + plusCount
+        lblTotalCount.setText(totalCount.intText)
+        
+        requestChangeTotalCount("plus") { [self] in
+            totalCount = totalCount - plusCount
+            lblTotalCount.setText(totalCount.intText)
         }
     }
+    
+    // // 3. With our session property which allows implement a method for start communication
+    // // and manage the counterpart response
+    // @IBAction func sendMessage() {
+    //     if session.isReachable {
+    //         button.setEnabled(false)
+    //         button.setTitle("receiving...")
+    //         session.sendMessage(["request": "writeData"]) { response in
+    //             self.items.append("Reply: \(response)")
+    //             self.button.setEnabled(true)
+    //             self.button.setTitle("button")
+    //         } errorHandler: { error in
+    //             print("Error sending message: %@", error)
+    //         }
+    //     } else {
+    //         print("iPhone is not reachable!!")
+    //     }
+    // }
+    //
+    // // MARK: - Items Table
+    //
+    // private var items = [String]() {
+    //     didSet {
+    //         DispatchQueue.main.async {
+    //             self.updateTable()
+    //         }
+    //     }
+    // }
+    //
+    //
+    // /// Updating all contents of WKInterfaceTable
+    // func updateTable() {
+    //     table.setNumberOfRows(items.count, withRowType: "Row")
+    //     for (i, item) in items.enumerated() {
+    //         if let row = table.rowController(at: i) as? Row {
+    //             row.label.setText(item)
+    //         }
+    //     }
+    // }
     
 }
 
@@ -106,12 +223,15 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         // 1: We launch a sound and a vibration
         WKInterfaceDevice.current().play(.notification)
-        // 2: Get message and append to list
-        let msg = message["msg"]!
-        self.items.append("\(msg)")
+    
+        if let totalCount = message["totalCount"] as? Double {
+            self.totalCount = totalCount
+            lblTotalCount.setText(totalCount.intText)
+        }
+        
+        if let plusCount = message["plusCount"] as? Double, self.plusCount != plusCount {
+            self.plusCount = plusCount
+            setStatus(.stepValue, plusCount.intText)
+        }
     }
-}
-
-class Row: NSObject {
-    @IBOutlet weak var label: WKInterfaceLabel!
 }
