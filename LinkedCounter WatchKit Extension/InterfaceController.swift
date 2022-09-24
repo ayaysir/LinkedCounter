@@ -50,7 +50,7 @@ class InterfaceController: WKInterfaceController {
                 
                 turnAllButton(false)
                 
-                lblTotalCount.setText("...")
+                setCountLabel("...")
                 setStatus(.normal, "Loading status...")
                 
                 session.sendMessage(makeRequest("plusCount_get")) { response in
@@ -74,19 +74,17 @@ class InterfaceController: WKInterfaceController {
                     
                     if let totalCount = response["response"] as? Double {
                         self.totalCount = totalCount
-                        self.lblTotalCount.setText(totalCount.intText)
+                        self.setCountLabel(totalCount.intText)
                         self.initTotalCountLoaded = true
                         if self.initPlusCountLoaded {
                             self.turnAllButton(true)
                         }
                     } else {
-                        self.lblTotalCount.setText("ERROR")
-                        self.lblTotalCount.setTextColor(.red)
+                        self.setCountLabel("ERROR", color: .red)
                     }
                 } errorHandler: { error in
                     print("Error sending message: %@", error)
-                    self.lblTotalCount.setText("ERROR")
-                    self.lblTotalCount.setTextColor(.red)
+                    self.setCountLabel("ERROR", color: .red)
                 }
 
                 timer.invalidate()
@@ -105,6 +103,11 @@ class InterfaceController: WKInterfaceController {
         btnMinus.setEnabled(isEnable)
     }
     
+    private func setCountLabel(_ text: String, color: UIColor = .white) {
+        lblTotalCount.setTextColor(color)
+        lblTotalCount.setText(text)
+    }
+    
     private func setStatus(_ status: LabelStatus, _ text: String) {
         switch status {
         case .stepValue:
@@ -119,14 +122,15 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
-    private func requestChangeTotalCount(_ request: String, failedHandler: @escaping () -> ()) {
+    private func requestChangeTotalCount(_ request: String, completionHandler: @escaping () -> (), failedHandler: @escaping () -> ()) {
         if session.isReachable {
             session.sendMessage(makeRequest("totalCount_\(request)")) { response in
                 
                 if let totalCount = response["response"] as? Double {
                     self.totalCount = totalCount
-                    self.lblTotalCount.setText(totalCount.intText)
+                    self.setCountLabel(totalCount.intText)
                     print("Request success:", totalCount)
+                    completionHandler()
                 } else {
                     print("Request failed:", #line)
                     failedHandler()
@@ -148,11 +152,14 @@ class InterfaceController: WKInterfaceController {
         // 틀리면 롤백
         guard let plusCount = plusCount else { return }
         totalCount = totalCount - plusCount
-        lblTotalCount.setText(totalCount.intText)
+        setCountLabel(totalCount.intText)
+        setStatus(.normal, "Syncing...")
         
         requestChangeTotalCount("minus") { [self] in
+            setStatus(.stepValue, plusCount.intText)
+        } failedHandler: { [self] in
             totalCount = totalCount + plusCount
-            lblTotalCount.setText(totalCount.intText)
+            setCountLabel(totalCount.intText)
         }
     }
     
@@ -163,11 +170,14 @@ class InterfaceController: WKInterfaceController {
         // 틀리면 롤백
         guard let plusCount = plusCount else { return }
         totalCount = totalCount + plusCount
-        lblTotalCount.setText(totalCount.intText)
+        setCountLabel(totalCount.intText)
+        setStatus(.normal, "Syncing...")
         
         requestChangeTotalCount("plus") { [self] in
+            setStatus(.stepValue, plusCount.intText)
+        } failedHandler: { [self] in
             totalCount = totalCount - plusCount
-            lblTotalCount.setText(totalCount.intText)
+            setCountLabel(totalCount.intText)
         }
     }
     
@@ -226,7 +236,7 @@ extension InterfaceController: WCSessionDelegate {
     
         if let totalCount = message["totalCount"] as? Double {
             self.totalCount = totalCount
-            lblTotalCount.setText(totalCount.intText)
+            setCountLabel(totalCount.intText)
         }
         
         if let plusCount = message["plusCount"] as? Double, self.plusCount != plusCount {

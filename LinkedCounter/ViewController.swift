@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 let localStorage = UserDefaults.standard
 
@@ -26,6 +27,8 @@ class ViewController: UIViewController {
     
     // 2: Counter for manage number of messages sended
     var messagesCounter = 0
+    
+    private var player: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +38,17 @@ class ViewController: UIViewController {
         // stepperTotalCount.stepValue = stepperPlusCount.value
         
         // 초기화
-        refreshView()
+        refreshView(nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: .refreshView, object: nil)
     }
     
-    @objc func refreshView() {
+    @objc func refreshView(_ notificaiton: Notification?) {
+        
+        if notificaiton != nil {
+            playSound()
+        }
+        
         DispatchQueue.main.async { [unowned self] in
             let plusCount = localStorage.double(forKey: .cfgPlusCount)
             stepperTotalCount.value = localStorage.double(forKey: .cfgTotalCount)
@@ -70,6 +78,25 @@ class ViewController: UIViewController {
         stepperTotalCount.stepValue = sender.value
         lblPlusCount.text = sender.value.intText
         saveData()
+    }
+    
+    func playSound() {
+        let soundName = "snd_fragment_retrievewav-14728"
+        // forResource: 파일 이름(확장자 제외) , withExtension: 확장자(mp3, wav 등) 입력
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: "mp3") else {
+            return
+        }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            player?.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func stopSound() {
+        player?.stop()
     }
     
     // @IBAction func sendMessage(_ sender: Any) {

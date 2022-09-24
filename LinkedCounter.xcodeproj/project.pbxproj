@@ -30,6 +30,7 @@
 		44F3054328DDFE830068E50B /* RequestAndResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054128DDFE830068E50B /* RequestAndResponse.swift */; };
 		44F3054528DE0BEF0068E50B /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054428DE0BEF0068E50B /* NotificationName.swift */; };
 		44F3054628DE0BEF0068E50B /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3054428DE0BEF0068E50B /* NotificationName.swift */; };
+		44F3054828DE115C0068E50B /* snd_fragment_retrievewav-14728.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F3054728DE115B0068E50B /* snd_fragment_retrievewav-14728.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		44F3053E28DDFE070068E50B /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		44F3054128DDFE830068E50B /* RequestAndResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAndResponse.swift; sourceTree = "<group>"; };
 		44F3054428DE0BEF0068E50B /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		44F3054728DE115B0068E50B /* snd_fragment_retrievewav-14728.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "snd_fragment_retrievewav-14728.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		44F304BD28DDCFAF0068E50B /* LinkedCounter */ = {
 			isa = PBXGroup;
 			children = (
+				44F3054728DE115B0068E50B /* snd_fragment_retrievewav-14728.mp3 */,
 				44F304BE28DDCFAF0068E50B /* AppDelegate.swift */,
 				44F304C028DDCFAF0068E50B /* SceneDelegate.swift */,
 				44F304C228DDCFAF0068E50B /* ViewController.swift */,
@@ -293,6 +296,7 @@
 			files = (
 				44F304CB28DDCFB40068E50B /* LaunchScreen.storyboard in Resources */,
 				44F304C828DDCFB40068E50B /* Assets.xcassets in Resources */,
+				44F3054828DE115C0068E50B /* snd_fragment_retrievewav-14728.mp3 in Resources */,
 				44F304C628DDCFAF0068E50B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
