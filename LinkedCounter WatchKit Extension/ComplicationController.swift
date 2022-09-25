@@ -56,7 +56,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the timeline entries after the given date
 
         var dataRead = false
-        CurrentData.shared.targetCount = 3000.0
+        // CurrentData.shared.targetCount = 3000.0
 
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [self] timer in
             

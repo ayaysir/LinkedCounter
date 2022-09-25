@@ -129,7 +129,6 @@ class InterfaceController: WKInterfaceController {
             setStatus(.normal, "Loading status...")
             
             session.sendMessage(makeRequest("plusCount_get")) { response in
-                
                 if let plusCount = response["response"] as? Double {
                     self.plusCount = plusCount
                     self.setStatus(.stepValue, plusCount.intText)
@@ -146,7 +145,6 @@ class InterfaceController: WKInterfaceController {
             }
             
             session.sendMessage(makeRequest("totalCount_get")) { response in
-                
                 if let totalCount = response["response"] as? Double {
                     self.totalCount = totalCount
                     self.setCountLabel(totalCount.intText)
@@ -162,6 +160,12 @@ class InterfaceController: WKInterfaceController {
             } errorHandler: { error in
                 print("Error sending message: %@", error)
                 self.setCountLabel("ERROR", color: .red)
+            }
+            
+            session.sendMessage(makeRequest("targetCount_get")) { response in
+                if let targetCount = response["response"] as? Double {
+                    CurrentData.shared.targetCount = targetCount
+                }
             }
         }
     }
@@ -234,6 +238,7 @@ extension InterfaceController: WCSessionDelegate {
         // 1: We launch a sound and a vibration
         WKInterfaceDevice.current().play(.notification)
     
+        print(#function, message)
         if let totalCount = message["totalCount"] as? Double {
             self.totalCount = totalCount
             setCountLabel(totalCount.intText)
@@ -242,6 +247,16 @@ extension InterfaceController: WCSessionDelegate {
         if let plusCount = message["plusCount"] as? Double, self.plusCount != plusCount {
             self.plusCount = plusCount
             setStatus(.stepValue, plusCount.intText)
+        }
+        
+        if let targetCount = message["targetCount"] as? Double, CurrentData.shared.targetCount != targetCount {
+            CurrentData.shared.targetCount = targetCount
+            // reloadComplicationTimeline()
+            
+            self.setStatus(.normal, "Target: \(targetCount.intText)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                self.setStatus(.stepValue, self.plusCount.intText)
+            }
         }
     }
     

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4494DD0E28DF62F90091614E /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494DD0D28DF62F90091614E /* ComplicationViews.swift */; };
+		4494DD1028E09D060091614E /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494DD0F28E09D060091614E /* SettingViewController.swift */; };
+		4494DD1228E09D850091614E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494DD1128E09D850091614E /* GlobalVariables.swift */; };
+		4494DD1928E0AA3D0091614E /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4494DD1828E0AA3D0091614E /* SimpleAlert.swift */; };
 		44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304BE28DDCFAF0068E50B /* AppDelegate.swift */; };
 		44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304C028DDCFAF0068E50B /* SceneDelegate.swift */; };
 		44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F304C228DDCFAF0068E50B /* ViewController.swift */; };
@@ -78,6 +81,9 @@
 
 /* Begin PBXFileReference section */
 		4494DD0D28DF62F90091614E /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
+		4494DD0F28E09D060091614E /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4494DD1128E09D850091614E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		4494DD1828E0AA3D0091614E /* SimpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
 		44F304BB28DDCFAF0068E50B /* LinkedCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F304BE28DDCFAF0068E50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44F304C028DDCFAF0068E50B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +129,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4494DD1328E09DB00091614E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44F304C228DDCFAF0068E50B /* ViewController.swift */,
+				4494DD0F28E09D060091614E /* SettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4494DD1428E09DE10091614E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				44F3054728DE115B0068E50B /* snd_fragment_retrievewav-14728.mp3 */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		4494DD1528E09E000091614E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				44F3054428DE0BEF0068E50B /* NotificationName.swift */,
+				4494DD1828E0AA3D0091614E /* SimpleAlert.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4494DD1628E09E110091614E /* AppMain */ = {
+			isa = PBXGroup;
+			children = (
+				44F304BE28DDCFAF0068E50B /* AppDelegate.swift */,
+				44F304C028DDCFAF0068E50B /* SceneDelegate.swift */,
+				44F304C428DDCFAF0068E50B /* Main.storyboard */,
+				44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */,
+			);
+			path = AppMain;
+			sourceTree = "<group>";
+		};
+		4494DD1728E09E320091614E /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				44F3053428DDE2B50068E50B /* SessionHandler.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
 		44F304B228DDCFAF0068E50B = {
 			isa = PBXGroup;
 			children = (
@@ -147,16 +198,14 @@
 		44F304BD28DDCFAF0068E50B /* LinkedCounter */ = {
 			isa = PBXGroup;
 			children = (
-				44F3054728DE115B0068E50B /* snd_fragment_retrievewav-14728.mp3 */,
-				44F304BE28DDCFAF0068E50B /* AppDelegate.swift */,
-				44F304C028DDCFAF0068E50B /* SceneDelegate.swift */,
-				44F304C228DDCFAF0068E50B /* ViewController.swift */,
-				44F304C428DDCFAF0068E50B /* Main.storyboard */,
-				44F304C728DDCFB40068E50B /* Assets.xcassets */,
-				44F304C928DDCFB40068E50B /* LaunchScreen.storyboard */,
+				4494DD1728E09E320091614E /* WatchConnectivity */,
+				4494DD1628E09E110091614E /* AppMain */,
+				4494DD1528E09E000091614E /* Extension */,
+				4494DD1428E09DE10091614E /* Resource */,
+				4494DD1328E09DB00091614E /* ViewController */,
+				4494DD1128E09D850091614E /* GlobalVariables.swift */,
 				44F304CC28DDCFB40068E50B /* Info.plist */,
-				44F3053428DDE2B50068E50B /* SessionHandler.swift */,
-				44F3054428DE0BEF0068E50B /* NotificationName.swift */,
+				44F304C728DDCFB40068E50B /* Assets.xcassets */,
 			);
 			path = LinkedCounter;
 			sourceTree = "<group>";
@@ -331,9 +380,12 @@
 				44F304C328DDCFAF0068E50B /* ViewController.swift in Sources */,
 				44F3053528DDE2B50068E50B /* SessionHandler.swift in Sources */,
 				44F3054228DDFE830068E50B /* RequestAndResponse.swift in Sources */,
+				4494DD1228E09D850091614E /* GlobalVariables.swift in Sources */,
+				4494DD1028E09D060091614E /* SettingViewController.swift in Sources */,
 				44F3054528DE0BEF0068E50B /* NotificationName.swift in Sources */,
 				44F304BF28DDCFAF0068E50B /* AppDelegate.swift in Sources */,
 				44F304C128DDCFAF0068E50B /* SceneDelegate.swift in Sources */,
+				4494DD1928E0AA3D0091614E /* SimpleAlert.swift in Sources */,
 				44F3053F28DDFE070068E50B /* Double+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

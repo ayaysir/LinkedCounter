@@ -8,13 +8,6 @@
 import UIKit
 import AVFoundation
 
-let localStorage = UserDefaults.standard
-
-extension String {
-    static let cfgTotalCount = "cfgTotalCount"
-    static let cfgPlusCount = "cfgPlusCount"
-}
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var lblTotalCount: UILabel!
@@ -32,10 +25,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 초기화(임시)
-        // stepperTotalCount.value = 0
-        // stepperTotalCount.stepValue = stepperPlusCount.value
         
         // 초기화
         refreshView(nil)
@@ -80,13 +69,17 @@ class ViewController: UIViewController {
         saveData()
     }
     
+    // @IBAction func btnActSendComplicationData(_ sender: Any) {
+    //     print(#function)
+    //     SessionHandler.shared.sendDataForComplication()
+    // }
     
-    
-    @IBAction func btnActSendComplicationData(_ sender: Any) {
-        print(#function)
-        SessionHandler.shared.sendDataForComplication()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SettingVCSegue" {
+            let settingVC = segue.destination as? SettingViewController
+            settingVC?.delegate = self
+        }
     }
-    
     
     func playSound() {
         let soundName = "snd_fragment_retrievewav-14728"
@@ -115,5 +108,20 @@ class ViewController: UIViewController {
     //     }
     // }
     
+}
+
+extension ViewController: SettingVCDelegate {
+    func didResetAllData(_ controller: SettingViewController) {
+        initData()
+        
+        let totalCount = localStorage.double(forKey: .cfgTotalCount)
+        let plusCount = localStorage.double(forKey: .cfgPlusCount)
+        let targetCount = localStorage.double(forKey: .cfgTargetCount)
+        
+        refreshView(nil)
+        connectivityHandler.session.sendMessage(makeRequestForSendToWatch(totalCount: totalCount, plusCount: plusCount, targetCount: targetCount), replyHandler: nil) { error in
+            print("Error sending message: \(error)")
+        }
+    }
 }
 

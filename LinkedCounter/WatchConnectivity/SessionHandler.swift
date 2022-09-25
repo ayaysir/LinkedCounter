@@ -88,6 +88,8 @@ class SessionHandler : NSObject, WCSessionDelegate {
             localStorage.set(newValue, forKey: .cfgTotalCount)
             replyHandler(makeResponse(newValue))
             NotificationCenter.default.post(name: .refreshView, object: nil)
+        case "targetCount_get":
+            replyHandler(makeResponse(localStorage.double(forKey: .cfgTargetCount)))
         default:
             break
         }
