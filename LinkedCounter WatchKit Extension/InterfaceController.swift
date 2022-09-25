@@ -7,9 +7,16 @@
 
 import WatchKit
 import Foundation
-
-// WCSession 등
 import WatchConnectivity
+import ClockKit
+
+struct CurrentData {
+    
+    static var shared = CurrentData(currentTotalCount: nil, targetCount: nil)
+    
+    var currentTotalCount: Double?
+    var targetCount: Double?
+}
 
 class InterfaceController: WKInterfaceController {
     
@@ -47,46 +54,7 @@ class InterfaceController: WKInterfaceController {
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] timer in
             print("timer", self.session.isReachable)
             if session.isReachable {
-                
-                turnAllButton(false)
-                
-                setCountLabel("...")
-                setStatus(.normal, "Loading status...")
-                
-                session.sendMessage(makeRequest("plusCount_get")) { response in
-                    
-                    if let plusCount = response["response"] as? Double {
-                        self.plusCount = plusCount
-                        self.setStatus(.stepValue, plusCount.intText)
-                        self.initPlusCountLoaded = true
-                        if self.initTotalCountLoaded {
-                            self.turnAllButton(true)
-                        }
-                    } else {
-                        self.setStatus(.error, "Unknown")
-                    }
-                } errorHandler: { error in
-                    print("Error sending message: %@", error)
-                    self.setStatus(.error, error.localizedDescription)
-                }
-                
-                session.sendMessage(makeRequest("totalCount_get")) { response in
-                    
-                    if let totalCount = response["response"] as? Double {
-                        self.totalCount = totalCount
-                        self.setCountLabel(totalCount.intText)
-                        self.initTotalCountLoaded = true
-                        if self.initPlusCountLoaded {
-                            self.turnAllButton(true)
-                        }
-                    } else {
-                        self.setCountLabel("ERROR", color: .red)
-                    }
-                } errorHandler: { error in
-                    print("Error sending message: %@", error)
-                    self.setCountLabel("ERROR", color: .red)
-                }
-
+                fetchDataFromRootDevice()
                 timer.invalidate()
             } else {
                 print(#function, "iPhone is not reachable!!")
@@ -96,7 +64,11 @@ class InterfaceController: WKInterfaceController {
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        reloadComplicationTimeline()
+        
     }
+    
+    // MARK: - UI Helper
     
     private func turnAllButton(_ isEnable: Bool) {
         btnPlus.setEnabled(isEnable)
@@ -122,6 +94,8 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    // MARK: - Handle Watch's system
+    
     private func requestChangeTotalCount(_ request: String, completionHandler: @escaping () -> (), failedHandler: @escaping () -> ()) {
         if session.isReachable {
             session.sendMessage(makeRequest("totalCount_\(request)")) { response in
@@ -129,6 +103,8 @@ class InterfaceController: WKInterfaceController {
                 if let totalCount = response["response"] as? Double {
                     self.totalCount = totalCount
                     self.setCountLabel(totalCount.intText)
+                    // Set CurrentData
+                    CurrentData.shared.currentTotalCount = totalCount
                     print("Request success:", totalCount)
                     completionHandler()
                 } else {
@@ -145,6 +121,63 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    private func fetchDataFromRootDevice() {
+        if session.isReachable {
+            turnAllButton(false)
+            
+            setCountLabel("...")
+            setStatus(.normal, "Loading status...")
+            
+            session.sendMessage(makeRequest("plusCount_get")) { response in
+                
+                if let plusCount = response["response"] as? Double {
+                    self.plusCount = plusCount
+                    self.setStatus(.stepValue, plusCount.intText)
+                    self.initPlusCountLoaded = true
+                    if self.initTotalCountLoaded {
+                        self.turnAllButton(true)
+                    }
+                } else {
+                    self.setStatus(.error, "Unknown")
+                }
+            } errorHandler: { error in
+                print("Error sending message: %@", error)
+                self.setStatus(.error, error.localizedDescription)
+            }
+            
+            session.sendMessage(makeRequest("totalCount_get")) { response in
+                
+                if let totalCount = response["response"] as? Double {
+                    self.totalCount = totalCount
+                    self.setCountLabel(totalCount.intText)
+                    self.initTotalCountLoaded = true
+                    // Set CurrentData
+                    CurrentData.shared.currentTotalCount = totalCount
+                    if self.initPlusCountLoaded {
+                        self.turnAllButton(true)
+                    }
+                } else {
+                    self.setCountLabel("ERROR", color: .red)
+                }
+            } errorHandler: { error in
+                print("Error sending message: %@", error)
+                self.setCountLabel("ERROR", color: .red)
+            }
+        }
+    }
+    
+    private func reloadComplicationTimeline() {
+        if let complication = CLKComplicationServer.sharedInstance().activeComplications?.first {
+            CLKComplicationServer.sharedInstance().reloadTimeline(for: complication)
+        }
+    }
+    
+    // MARK: - @IBActions
+    
+    @IBAction func btnActRefresh() {
+       fetchDataFromRootDevice()
+    }
+    
     @IBAction func btnActMinus() {
         print(#function)
         // 시계 디스플레이는 plusCount 만큼 일단 올리고
@@ -157,6 +190,8 @@ class InterfaceController: WKInterfaceController {
         
         requestChangeTotalCount("minus") { [self] in
             setStatus(.stepValue, plusCount.intText)
+            // Set CurrentData
+            CurrentData.shared.currentTotalCount = totalCount
         } failedHandler: { [self] in
             totalCount = totalCount + plusCount
             setCountLabel(totalCount.intText)
@@ -175,54 +210,19 @@ class InterfaceController: WKInterfaceController {
         
         requestChangeTotalCount("plus") { [self] in
             setStatus(.stepValue, plusCount.intText)
+            // Set CurrentData
+            CurrentData.shared.currentTotalCount = totalCount
         } failedHandler: { [self] in
             totalCount = totalCount - plusCount
             setCountLabel(totalCount.intText)
         }
     }
-    
-    // // 3. With our session property which allows implement a method for start communication
-    // // and manage the counterpart response
-    // @IBAction func sendMessage() {
-    //     if session.isReachable {
-    //         button.setEnabled(false)
-    //         button.setTitle("receiving...")
-    //         session.sendMessage(["request": "writeData"]) { response in
-    //             self.items.append("Reply: \(response)")
-    //             self.button.setEnabled(true)
-    //             self.button.setTitle("button")
-    //         } errorHandler: { error in
-    //             print("Error sending message: %@", error)
-    //         }
-    //     } else {
-    //         print("iPhone is not reachable!!")
-    //     }
-    // }
-    //
-    // // MARK: - Items Table
-    //
-    // private var items = [String]() {
-    //     didSet {
-    //         DispatchQueue.main.async {
-    //             self.updateTable()
-    //         }
-    //     }
-    // }
-    //
-    //
-    // /// Updating all contents of WKInterfaceTable
-    // func updateTable() {
-    //     table.setNumberOfRows(items.count, withRowType: "Row")
-    //     for (i, item) in items.enumerated() {
-    //         if let row = table.rowController(at: i) as? Row {
-    //             row.label.setText(item)
-    //         }
-    //     }
-    // }
-    
 }
 
+
 extension InterfaceController: WCSessionDelegate {
+    
+    // MARK: - WCSessionDelegate
     
     // 4: Required stub for delegating session
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -243,5 +243,9 @@ extension InterfaceController: WCSessionDelegate {
             self.plusCount = plusCount
             setStatus(.stepValue, plusCount.intText)
         }
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        print("received UserInfo:", userInfo)
     }
 }

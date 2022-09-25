@@ -15,4 +15,12 @@ extension Double {
     var intText: String {
         return "\(self.int)"
     }
+    
+    var rationalizedText: String {
+        if self >= 1000 && self <= 99999 {
+            return (self / 1000).intText + "K"
+        } else {
+            return self.intText
+        }
+    }
 }

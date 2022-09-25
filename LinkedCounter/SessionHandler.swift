@@ -92,4 +92,12 @@ class SessionHandler : NSObject, WCSessionDelegate {
             break
         }
     }
+    
+    func sendDataForComplication() {
+        print(#function, session.isReachable)
+        if session.isReachable {
+            session.transferCurrentComplicationUserInfo(["request": "forComplication"])
+        }
+    }
+    
 }

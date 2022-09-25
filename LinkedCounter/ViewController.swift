@@ -80,6 +80,14 @@ class ViewController: UIViewController {
         saveData()
     }
     
+    
+    
+    @IBAction func btnActSendComplicationData(_ sender: Any) {
+        print(#function)
+        SessionHandler.shared.sendDataForComplication()
+    }
+    
+    
     func playSound() {
         let soundName = "snd_fragment_retrievewav-14728"
         // forResource: 파일 이름(확장자 제외) , withExtension: 확장자(mp3, wav 등) 입력
