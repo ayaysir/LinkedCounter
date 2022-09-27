@@ -189,7 +189,7 @@ class InterfaceController: WKInterfaceController {
         // 틀리면 롤백
         guard let plusCount = plusCount else { return }
         totalCount = totalCount - plusCount
-        setCountLabel(totalCount.intText)
+        setCountLabel(totalCount.intText, color: .darkGray)
         setStatus(.normal, "Syncing...")
         
         requestChangeTotalCount("minus") { [self] in
@@ -209,7 +209,7 @@ class InterfaceController: WKInterfaceController {
         // 틀리면 롤백
         guard let plusCount = plusCount else { return }
         totalCount = totalCount + plusCount
-        setCountLabel(totalCount.intText)
+        setCountLabel(totalCount.intText, color: .darkGray)
         setStatus(.normal, "Syncing...")
         
         requestChangeTotalCount("plus") { [self] in
