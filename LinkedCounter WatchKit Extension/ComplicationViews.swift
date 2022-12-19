@@ -12,7 +12,6 @@ struct ComplicationViewCircular: View {
     @State var current: Double
     @State var target: Double
     
-    
     var body: some View {
         ZStack {
             ProgressView(current.intText, value: current, total: target)

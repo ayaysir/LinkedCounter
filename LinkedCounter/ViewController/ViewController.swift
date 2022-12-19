@@ -23,13 +23,31 @@ class ViewController: UIViewController {
     
     private var player: AVAudioPlayer?
 
+    // MARK: - VC Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 배지 표시 권한 요청
+        requestBadgeAuth()
         
         // 초기화
         refreshView(nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: .refreshView, object: nil)
+    }
+    
+    // MARK: - Init VC
+    
+    private func requestBadgeAuth() {
+        let userNotiCenter = UNUserNotificationCenter.current()
+        let notiAuthOptions = UNAuthorizationOptions(arrayLiteral: [.badge,])
+        
+        userNotiCenter.requestAuthorization(options: notiAuthOptions) { (success, error) in
+            if let error = error {
+                print(#function, error)
+            }
+        }
     }
     
     @objc func refreshView(_ notificaiton: Notification?) {
@@ -46,39 +64,26 @@ class ViewController: UIViewController {
             
             lblTotalCount.text = stepperTotalCount.value.intText
             lblPlusCount.text = stepperTotalCount.stepValue.intText
+            
+            changeBadge(stepperTotalCount.value.int)
         }
     }
+    
+    // MARK: - Internal methods
     
     func saveData() {
         localStorage.set(stepperTotalCount.value,forKey: .cfgTotalCount)
         localStorage.set(stepperPlusCount.value,forKey: .cfgPlusCount)
         
+        changeBadge(stepperTotalCount.value.int)
+        
         connectivityHandler.session.sendMessage(makeRequestForSendToWatch(totalCount: stepperTotalCount.value, plusCount: stepperPlusCount.value), replyHandler: nil) { error in
             print("Error sending message: \(error)")
         }
     }
-
-    @IBAction func stepperActTotalCount(_ sender: UIStepper) {
-        lblTotalCount.text = sender.value.intText
-        saveData()
-    }
     
-    @IBAction func steppperActPlusCount(_ sender: UIStepper) {
-        stepperTotalCount.stepValue = sender.value
-        lblPlusCount.text = sender.value.intText
-        saveData()
-    }
-    
-    // @IBAction func btnActSendComplicationData(_ sender: Any) {
-    //     print(#function)
-    //     SessionHandler.shared.sendDataForComplication()
-    // }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SettingVCSegue" {
-            let settingVC = segue.destination as? SettingViewController
-            settingVC?.delegate = self
-        }
+    func changeBadge(_ number: Int) {
+        UIApplication.shared.applicationIconBadgeNumber = number
     }
     
     func playSound() {
@@ -99,6 +104,36 @@ class ViewController: UIViewController {
     func stopSound() {
         player?.stop()
     }
+
+    // MARK: - IBActions
+    
+    @IBAction func stepperActTotalCount(_ sender: UIStepper) {
+        lblTotalCount.text = sender.value.intText
+        saveData()
+    }
+    
+    @IBAction func steppperActPlusCount(_ sender: UIStepper) {
+        stepperTotalCount.stepValue = sender.value
+        lblPlusCount.text = sender.value.intText
+        saveData()
+    }
+    
+    // MARK: - Navigations
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SettingVCSegue" {
+            let settingVC = segue.destination as? SettingViewController
+            settingVC?.delegate = self
+        }
+    }
+    
+    // MARK: - Unused
+    
+    // @IBAction func btnActSendComplicationData(_ sender: Any) {
+    //     print(#function)
+    //     SessionHandler.shared.sendDataForComplication()
+    // }
+    
     
     // @IBAction func sendMessage(_ sender: Any) {
     //     messagesCounter += 1
@@ -111,6 +146,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: SettingVCDelegate {
+    
+    // MARK: - SettingVCDelegate
+    
     func didResetAllData(_ controller: SettingViewController) {
         initData()
         

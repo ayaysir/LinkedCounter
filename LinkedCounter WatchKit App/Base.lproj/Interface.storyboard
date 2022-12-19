@@ -63,21 +63,21 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="219" y="703"/>
+            <point key="canvasLocation" x="219" y="933"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController" customModule="LinkedCounter" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="519" y="777"/>
+            <point key="canvasLocation" x="505" y="978"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="Niz-AI-uX2">
             <objects>
                 <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="LinkedCounter" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="519" y="483"/>
+            <point key="canvasLocation" x="505" y="713"/>
         </scene>
     </scenes>
 </document>

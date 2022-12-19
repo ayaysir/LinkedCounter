@@ -232,7 +232,7 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
     }
-    
+        
     // Receive messages from iPhone
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         // 1: We launch a sound and a vibration
