@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,41 +17,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iS-Fz-5Gm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iS-Fz-5Gm">
                                 <rect key="frame" x="20" y="261" width="374" height="144"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="414" id="WH5-xi-qsO"/>
+                                    <constraint firstAttribute="height" constant="144" id="p1B-61-0ZV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="120"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="9.2233720368547758e+18" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-FA-ZnR">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="9.2233720368547758e+18" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-FA-ZnR">
                                 <rect key="frame" x="160" y="413" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="stepperActTotalCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="Nmk-wg-CmR"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HM1-2V-ltX">
-                                <rect key="frame" x="30" y="499" width="86" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HM1-2V-ltX">
+                                <rect key="frame" x="19.5" y="523" width="86" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="bXe-OT-cVO"/>
+                                    <constraint firstAttribute="width" constant="86" id="tar-pj-r4c"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="5" maximumValue="100" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-iH-dqw">
-                                <rect key="frame" x="300" y="494" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="5" maximumValue="100" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-iH-dqw">
+                                <rect key="frame" x="300.5" y="517.5" width="94" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="FUz-a9-vfV"/>
+                                    <constraint firstAttribute="height" constant="32" id="LaU-Je-NkE"/>
+                                </constraints>
                                 <connections>
                                     <action selector="steppperActPlusCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="YYs-LK-vZr"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-Wl-xPw">
-                                <rect key="frame" x="178" y="499" width="114" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbV-qY-wvP">
                                 <rect key="frame" x="362" y="44" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,11 +65,111 @@
                                     <segue destination="Vb8-EU-vrs" kind="show" identifier="SettingVCSegue" id="etq-4B-arm"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-U0-HM9">
+                                <rect key="frame" x="19.5" y="463" width="375" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGf-gd-Fov">
+                                        <rect key="frame" x="0.0" y="0.0" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+ 15">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="QuickPlusButtonText"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="0.51021510244205293" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnActQuickPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y7Y-7d-tJn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Xa-Kb-AwY">
+                                        <rect key="frame" x="77" y="0.0" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+ 30">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="QuickPlusButtonText"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="0.51021510244205293" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnActQuickPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="unx-Hh-mBY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-8m-K7f">
+                                        <rect key="frame" x="154" y="0.0" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+ 45">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="QuickPlusButtonText"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="0.51021510244205293" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnActQuickPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JYw-uz-WhT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLn-qX-PfU">
+                                        <rect key="frame" x="231" y="0.0" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+ 60">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="QuickPlusButtonText"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="0.51021510244205293" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnActQuickPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4gM-xY-Fj2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5T-RW-xUH">
+                                        <rect key="frame" x="308" y="0.0" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+ 7500">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            <color key="baseForegroundColor" name="QuickPlusButtonText"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="0.51021510244205293" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnActQuickPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CEY-6W-pkI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="lgk-oY-UON"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-Wl-xPw">
+                                <rect key="frame" x="178" y="523" width="114" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5tG-2g-LMs"/>
+                                    <constraint firstAttribute="width" constant="114" id="a64-FD-NGB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HM1-2V-ltX" firstAttribute="top" secondItem="Hjz-U0-HM9" secondAttribute="bottom" constant="29" id="39b-SO-VOj"/>
+                            <constraint firstItem="5iS-Fz-5Gm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3eC-fp-R7L"/>
+                            <constraint firstItem="Hjz-U0-HM9" firstAttribute="width" secondItem="5iS-Fz-5Gm" secondAttribute="width" multiplier="1.00267" id="5dO-HY-hMv"/>
+                            <constraint firstItem="qAF-iH-dqw" firstAttribute="centerY" secondItem="HM1-2V-ltX" secondAttribute="centerY" id="6qh-40-P5o"/>
+                            <constraint firstItem="Hjz-U0-HM9" firstAttribute="top" secondItem="HAp-FA-ZnR" secondAttribute="bottom" constant="18" id="81i-dU-EUu"/>
+                            <constraint firstItem="HM1-2V-ltX" firstAttribute="leading" secondItem="Hjz-U0-HM9" secondAttribute="leading" id="ALB-L7-llx"/>
+                            <constraint firstItem="HAp-FA-ZnR" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-24" id="LkP-Pm-zqL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5iS-Fz-5Gm" secondAttribute="trailing" constant="20" id="LxY-uI-J7L"/>
+                            <constraint firstItem="qAF-iH-dqw" firstAttribute="trailing" secondItem="Hjz-U0-HM9" secondAttribute="trailing" id="Se4-XU-bUD"/>
+                            <constraint firstItem="Hjz-U0-HM9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TDo-hV-Mjc"/>
+                            <constraint firstItem="5iS-Fz-5Gm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aN3-zQ-eJR"/>
+                            <constraint firstItem="qAF-iH-dqw" firstAttribute="leading" secondItem="UKW-Wl-xPw" secondAttribute="trailing" constant="8.5" id="cl0-s2-s5T"/>
+                            <constraint firstItem="UKW-Wl-xPw" firstAttribute="centerY" secondItem="HM1-2V-ltX" secondAttribute="centerY" id="h7x-j1-bHP"/>
+                            <constraint firstItem="HAp-FA-ZnR" firstAttribute="top" secondItem="5iS-Fz-5Gm" secondAttribute="bottom" constant="8" symbolic="YES" id="kD4-kc-79e"/>
+                            <constraint firstItem="HAp-FA-ZnR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kU9-3N-6NO"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnQuickPlus1" destination="JGf-gd-Fov" id="IvX-f9-MUn"/>
+                        <outlet property="btnQuickPlus2" destination="6Xa-Kb-AwY" id="6Tv-ag-aIr"/>
+                        <outlet property="btnQuickPlus3" destination="NZQ-8m-K7f" id="zXL-V1-Kpr"/>
+                        <outlet property="btnQuickPlus4" destination="nLn-qX-PfU" id="C49-kK-7oN"/>
+                        <outlet property="btnQuickPlus5" destination="J5T-RW-xUH" id="8bQ-gX-Ve3"/>
                         <outlet property="lblPlusCount" destination="UKW-Wl-xPw" id="AUw-nf-A1t"/>
                         <outlet property="lblTotalCount" destination="5iS-Fz-5Gm" id="yfQ-XW-heT"/>
                         <outlet property="stepperPlusCount" destination="qAF-iH-dqw" id="o2v-SW-gQe"/>
@@ -76,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+            <point key="canvasLocation" x="136.875" y="128.87323943661971"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="vs4-yY-4pN">
@@ -134,6 +236,9 @@
     </scenes>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="QuickPlusButtonText">
+            <color red="0.21430559456348419" green="0.21568627450980393" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

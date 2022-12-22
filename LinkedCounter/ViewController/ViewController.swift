@@ -15,6 +15,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblPlusCount: UILabel!
     @IBOutlet weak var stepperPlusCount: UIStepper!
     
+    @IBOutlet weak var btnQuickPlus1: UIButton!
+    @IBOutlet weak var btnQuickPlus2: UIButton!
+    @IBOutlet weak var btnQuickPlus3: UIButton!
+    @IBOutlet weak var btnQuickPlus4: UIButton!
+    @IBOutlet weak var btnQuickPlus5: UIButton!
+    
+    private var btnQuickPluses: [UIButton] {
+        return [
+            btnQuickPlus1,
+            btnQuickPlus2,
+            btnQuickPlus3,
+            btnQuickPlus4,
+            btnQuickPlus5,
+        ]
+    }
+    
     // 1: Get singleton class whitch manage WCSession
     var connectivityHandler = SessionHandler.shared
     
@@ -33,6 +49,7 @@ class ViewController: UIViewController {
         
         // 초기화
         refreshView(nil)
+        initBtnQuickPluses()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: .refreshView, object: nil)
     }
@@ -66,6 +83,25 @@ class ViewController: UIViewController {
             lblPlusCount.text = stepperTotalCount.stepValue.intText
             
             changeBadge(stepperTotalCount.value.int)
+            
+            refeshValueBtnQuickPluses()
+        }
+    }
+    
+    private func initBtnQuickPluses() {
+        btnQuickPluses.forEach { button in
+            button.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                var outgoing = incoming
+                outgoing.font = UIFont.systemFont(ofSize: 12)
+                return outgoing
+            }
+        }
+    }
+    
+    private func refeshValueBtnQuickPluses() {
+        btnQuickPluses.enumerated().forEach { (index, button) in
+            let value = Double(index + 1) * stepperPlusCount.value
+            button.setTitle("+ \(value.intText)", for: .normal)
         }
     }
     
@@ -104,19 +140,39 @@ class ViewController: UIViewController {
     func stopSound() {
         player?.stop()
     }
+    
+    private func changeTotalCount(_ number: Double) {
+        lblTotalCount.text = number.intText
+        saveData()
+    }
+    
+    private func changeStepCount(_ number: Double) {
+        stepperTotalCount.stepValue = number
+        lblPlusCount.text = number.intText
+        saveData()
+        refeshValueBtnQuickPluses()
+    }
+    
+    private func changeTotalCount(increase: Double) {
+        stepperTotalCount.value += increase
+        changeTotalCount(stepperTotalCount.value)
+    }
 
     // MARK: - IBActions
     
     @IBAction func stepperActTotalCount(_ sender: UIStepper) {
-        lblTotalCount.text = sender.value.intText
-        saveData()
+        changeTotalCount(sender.value)
     }
     
     @IBAction func steppperActPlusCount(_ sender: UIStepper) {
-        stepperTotalCount.stepValue = sender.value
-        lblPlusCount.text = sender.value.intText
-        saveData()
+        changeStepCount(sender.value)
     }
+    
+    @IBAction func btnActQuickPlus(_ sender: UIButton) {
+        let multiple = Double(sender.tag)
+        changeTotalCount(increase: multiple * stepperPlusCount.value)
+    }
+    
     
     // MARK: - Navigations
     
