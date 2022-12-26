@@ -20,3 +20,5 @@ func initData() {
     localStorage.set(30.0, forKey: .cfgPlusCount)
     localStorage.set(3000.0, forKey: .cfgTargetCount)
 }
+
+let QUICKACTION_PREFIX = "com.bgsmm.LinkedCounter.quickaction"

@@ -83,8 +83,8 @@ class ViewController: UIViewController {
             lblPlusCount.text = stepperTotalCount.stepValue.intText
             
             changeBadge(stepperTotalCount.value.int)
-            
             refeshValueBtnQuickPluses()
+            setQuickActions()
         }
     }
     
@@ -146,16 +146,18 @@ class ViewController: UIViewController {
         saveData()
     }
     
+    func changeTotalCount(increase: Double) {
+        stepperTotalCount.value += increase
+        changeTotalCount(stepperTotalCount.value)
+    }
+    
     private func changeStepCount(_ number: Double) {
         stepperTotalCount.stepValue = number
         lblPlusCount.text = number.intText
         saveData()
+        
         refeshValueBtnQuickPluses()
-    }
-    
-    private func changeTotalCount(increase: Double) {
-        stepperTotalCount.value += increase
-        changeTotalCount(stepperTotalCount.value)
+        setQuickActions()
     }
 
     // MARK: - IBActions
@@ -199,6 +201,30 @@ class ViewController: UIViewController {
     //     }
     // }
     
+}
+
+extension ViewController {
+    // MARK: - Quick Actions
+    
+    func setQuickActions() {
+        // Stepper 모두 Load 된 후 실행되도록
+        let value = stepperPlusCount.value.int
+        
+        
+        let items = stride(from: 4, to: 0, by: -1).map { multiple -> UIApplicationShortcutItem in
+            let result = value * multiple
+            
+            return UIApplicationShortcutItem(
+                type: "\(QUICKACTION_PREFIX)-\(multiple)",
+                localizedTitle: "Add \(result)",
+                // localizedSubtitle: "\(value) : \(multiple) : \(result)",
+                localizedSubtitle: nil,
+                icon: UIApplicationShortcutIcon(systemImageName: "plus.circle"),
+                userInfo: nil)
+        }
+        print("items", items)
+        UIApplication.shared.shortcutItems = items
+    }
 }
 
 extension ViewController: SettingVCDelegate {

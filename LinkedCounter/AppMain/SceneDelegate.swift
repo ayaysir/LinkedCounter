@@ -47,6 +47,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let multiple = Double(shortcutItem.type.replacingOccurrences(of: QUICKACTION_PREFIX + "-", with: "")) {
+            
+            let currentPlusCount = localStorage.double(forKey: .cfgPlusCount)
+            print("multiple from qa:", multiple, currentPlusCount)
+            
+            DispatchQueue.main.async { [unowned self] in
+                if let viewController = window?.rootViewController as? ViewController {
+                    viewController.changeTotalCount(increase: multiple * currentPlusCount)
+                }
+            }
+        }
+        
+    }
 }
 
